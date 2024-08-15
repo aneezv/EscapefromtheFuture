@@ -1,5 +1,5 @@
 
-let timeLeft = 30 * 60; // 30 minutes in seconds
+let timeLeft = 45 * 60; // 30 minutes in seconds
 let timerInterval;
 let currentWall = 1;
 const totalWalls = 6;
