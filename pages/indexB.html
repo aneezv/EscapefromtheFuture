@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Player Puzzle Room</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <h3>TimeTravel Inc</h3>
+        <div id="setup-screen" class="hidden">
+            <h2>Select Your Player</h2>
+            <button id="select-player-a">Player A</button>
+            <button id="select-player-b">Player B</button>
+        </div>
+        <div id="game-screen" class="hidden">
+            <div id="timer">30:00</div>
+            <div id="current-player"></div>
+            <div id="puzzle-area">
+                <div id="puzzle-view">
+
+                            <!-- dynamically generating puzzles -->
+                    
+                </div>
+            </div>
+            <div id="hint-area">
+                <h3>Hints/Text:</h3>
+                <p id="hint-text">  &nbsp;</p>
+            </div>
+            <div id="controls">
+                <button id="switch-left" >&larr;</button>
+                <button id="switch-right">&rarr;</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>selectPlayer('B');</script>
+</body>
+</html>

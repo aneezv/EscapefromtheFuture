@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player A (Future)</title>
+    <style>
+
+/* Style for Webkit browsers (Chrome, Safari) */
+#terminal {
+    overflow-y: scroll; /* Ensure scrollbar is always visible */
+}
+
+/* Webkit Scrollbar Styles */
+#terminal::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+#terminal::-webkit-scrollbar-track {
+    background: #1a1a1a; /* Background color of the track */
+    border-radius: 10px;
+}
+
+#terminal::-webkit-scrollbar-thumb {
+    background: #00bfff; /* Color of the scroll thumb */
+    border-radius: 10px;
+}
+
+#terminal::-webkit-scrollbar-thumb:hover {
+    background: #00bfff; /* Color when hovering over the thumb */
+}
+
+/* Firefox Scrollbar Styles */
+#terminal {
+    scrollbar-width: thin; /* Makes the scrollbar thinner */
+    scrollbar-color: #00bfff #1a1a1a; /* Thumb color and track color */
+}
+
+/* Example for Internet Explorer (Older versions) */
+#terminal {
+    -ms-overflow-style: scrollbar; /* Default scrollbar style */
+}
+
+
+
+        body {
+            background-color: #000; /* Black background for space */
+            color: #00bfff; /* Light blue text for a space feel */
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #terminal-container {
+            margin: 5rem 30vh 0 30vh;
+            background-color: #002b36; /* Dark blue background for depth */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.7); /* Blue glowing effect */
+            overflow: hidden;
+            position: relative;
+            font-size: large;
+            height: 40vh; /* Fixed height */
+            max-height: 70vh; /* Ensure it does not exceed viewport */
+        }
+
+        #terminal {
+            white-space: pre-wrap;
+            overflow-y: auto;
+            height: 100%; /* Fill container */
+            color: #00bfff; /* Light blue text color */
+        }
+
+        #terminal::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0.2) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+        }
+
+        #start-button, #play-button, #continue-button {
+            display: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #00bfff; /* Light blue button */
+            color: #000; /* Dark text for contrast */
+            border: none;
+            cursor: pointer;
+            animation: blink 1s infinite;
+            margin-top: 20px;
+            align-self: center;
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.7); /* Blue glowing effect */
+        }
+
+        #start-button {
+            display: block; /* Make the start button visible at first */
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .cursor {
+            background-color: #00bfff; /* Light blue cursor */
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        #logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1px; /* Adjusts space between the logo and terminal */
+}
+
+#logo {
+    max-width: 200px; /* Adjust the size of the logo */
+    height: auto;
+}
+
+
+    </style>
+</head>
+<body>
+    <div id="logo-container">
+        <img src="img/title.png" alt="Logo" id="logo">
+    </div>
+    
+  
+    
+    <div id="terminal-container">
+        <div id="terminal"></div>
+    </div>
+    <button id="start-button" onclick="startTyping()">Start</button>
+    <button id="continue-button">Continue</button>
+    <button id="play-button" onclick="location.href='pages/indexA.html'">Play</button>
+
+    <script>
+           const story = [
+            "[ Two brilliant scientists were on the verge of a historic discovery—a time machine. But when they tested it, something went wrong.",
+    "One scientist was teleported to a future parallel universe. Despite the fear and confusion, they found the time machine's terminal still working.",
+    "A connection to the past offered a glimmer of hope. They began exchanging messages, trying to reunite across time and space. ]",
+        "",
+            "'' I blink, and everything changes. The lab is gone, replaced by a futuristic version of it.",
+    "The time machine malfunctioned, sending me not just through time, but to a different dimension.",
+    "I have to connect with the past, to my partner. I start typing, explaining what happened, hoping my message reaches them.",
+    "Every keystroke is a fight against time to find my way back. I won't give up. ''",
+
+    "[Wait for the other player and Click the Play button at the same time !!]"
+        ];
+
+        let storyIndex = 0;
+        let charIndex = 0;
+        const terminal = document.getElementById('terminal');
+        const startButton = document.getElementById('start-button');
+        const continueButton = document.getElementById('continue-button');
+        const playButton = document.getElementById('play-button');
+
+        function typeWriter() {
+            continueButton.style.display = 'none'; // Hide continue button while typing
+            if (storyIndex < story.length) {
+                if (charIndex < story[storyIndex].length) {
+                    terminal.innerHTML = terminal.innerHTML.replace('<span class="cursor">|</span>', '');
+                    terminal.innerHTML += story[storyIndex].charAt(charIndex);
+                    terminal.innerHTML += '<span class="cursor">|</span>';
+                    charIndex++;
+                    setTimeout(typeWriter, 50); // Adjust typing speed
+                } else {
+                    terminal.innerHTML = terminal.innerHTML.replace('<span class="cursor">|</span>', '');
+                    if (storyIndex === story.length - 1) {
+                        playButton.style.display = 'block'; // Show play button on last paragraph
+                    } else {
+                        continueButton.style.display = 'block'; // Show continue button
+                    }
+                }
+            } else {
+                terminal.innerHTML = terminal.innerHTML.replace('<span class="cursor">|</span>', '');
+                playButton.style.display = 'block';
+            }
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        function startTyping() {
+            startButton.style.display = 'none'; // Hide start button
+            typeWriter();
+        }
+
+        continueButton.addEventListener('click', () => {
+            storyIndex++;
+            charIndex = 0;
+            terminal.innerHTML += '\n\n'; // Add some space between paragraphs
+            typeWriter();
+        });
+    </script>
+</body>
+</html>

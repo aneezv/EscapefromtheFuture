@@ -1,0 +1,216 @@
+/* Space-themed CSS for Two-Player Puzzle Room */
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #0a0a2a;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+    animation: backgroundScroll 60s linear infinite;
+}
+
+@keyframes backgroundScroll {
+    from {background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;}
+    to {background-position: 550px 550px, 590px 610px, 680px 820px, 620px 650px;}
+}
+
+#game-container {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 10px;
+
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+h1, h2, h3 {
+    text-align: center;
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+button {
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Orbitron', sans-serif;
+}
+
+button:hover {
+    background-color: #0099ff;
+    box-shadow: 0 0 15px rgba(0, 153, 255, 0.7);
+}
+
+#setup-screen, #game-screen {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+#timer {
+    font-size: 24px;
+    color: #ff3300;
+    margin-bottom: 20px;
+}
+
+#current-player {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #00ffcc;
+}
+
+#puzzle-area {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#hint-area {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#hint-text {
+    font-style: italic;
+    color: #ffcc00;
+}
+
+#controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Puzzle-specific styles */
+
+#switch-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.switch {
+    padding: 15px;
+    font-size: 16px;
+}
+
+.text-grid {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.text-input {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    margin: 5px;
+    font-size: 18px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 1px solid #00ffff;
+}
+
+.time-mechanism {
+    margin-bottom: 10px;
+}
+
+.time-input {
+    width: 80px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 1px solid #00ffff;
+}
+
+#button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.sequence-button {
+    padding: 15px;
+    font-size: 18px;
+}
+
+.letter-grid {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.letter-input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    margin: 5px;
+    font-size: 24px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 1px solid #00ffff;
+}
+
+#dialer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#dialer input {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    margin: 5px;
+    font-size: 18px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 1px solid #00ffff;
+}
+
+#clue-image-container {
+    max-width: 100%;
+    text-align: center;
+}
+
+#clue-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+#hint-text {
+    font-style: italic;
+    color: #ffcc00;
+    min-height: 1.2em; /* Adjust as needed */
+}
+
+.left-column ,.right-column{
+    display: grid;
+}
+
+.left-column input.text-input, .right-column input.text-input {
+   padding: 5px 22px;
+}
